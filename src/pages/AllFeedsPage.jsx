@@ -14,19 +14,52 @@ const fetchFeeds = async (isAuthenticated) => {
     return null
 }
 
+const unFollowFeed = async (feedId) => {
+    try {
+        await apiService.fetch(`/feed_follow/${feedId}`, { method: 'DELETE' })
+        return true
+    } catch (error) {
+        console.error(error);
+    }
+    return false
+}
+
+const followFeed = async (feedId) => {
+    try {
+        const jsonPayload = {
+            feed_id: feedId,
+        };
+        const resp = await apiService.fetch('/feed_follow', {
+            method: 'POST',
+            body: JSON.stringify(jsonPayload)
+        })
+        return resp
+    } catch (error) {
+        console.error(error);
+    }
+    return null
+}
+
+
+
 const AllFeedsPage = () => {
     const isAuthenticated = authService.isAuthenticated()
 
     const [feeds, setFeeds] = useState([]);
+    const [feeds_update, setFeedsUpdate] = useState([]);
 
     useEffect(() => {
         fetchFeeds(isAuthenticated).then((feeds) => {
             setFeeds(feeds)
         })
-    }, [])
+    }, [feeds_update])
 
-    const handleToggleFollow = (feedId) => {
-        // Handle follow/unfollow logic here
+    const handleToggleFollow = async (feedId) => {
+        followFeed(feedId).then((resp) => {
+            if (resp) {
+                setFeedsUpdate(!feeds_update)
+            }
+        })
     };
 
     return (
@@ -37,6 +70,7 @@ const AllFeedsPage = () => {
                     <FeedCard
                         key={feed.id}
                         feed={feed}
+                        isFollowing={false}
                         onToggleFollow={handleToggleFollow}
                     />
                 ))}

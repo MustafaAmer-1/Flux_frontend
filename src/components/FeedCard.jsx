@@ -1,6 +1,6 @@
 import { authService } from "../services/auth";
 
-const FeedCard = ({ feed, isAuthenticated, onToggleFollow }) => {
+const FeedCard = ({ feed, isAuthenticated, onToggleFollow, isFollowing }) => {
     isAuthenticated = authService.isAuthenticated()
 
     return (
@@ -17,11 +17,16 @@ const FeedCard = ({ feed, isAuthenticated, onToggleFollow }) => {
                         {feed.url}
                     </a>
                 </div>
-                {isAuthenticated ? <button
-                    onClick={() => onToggleFollow(feed.id)}
-                    className="px-4 py-2 rounded-md bg-blue-600 hover:bg-blue-700 text-white"
-                > Follow
-                </button> : ""}
+                {isAuthenticated ?
+                    <button
+                        onClick={() => onToggleFollow(feed.id)}
+                        className={`px-4 py-2 rounded-md ${isFollowing
+                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-800'
+                            : 'bg-blue-600 hover:bg-blue-700 text-white'
+                            }`}>
+                        {isFollowing ? 'Unfollow' : 'Follow'}
+                    </button>
+                    : ""}
             </div>
         </div>
     );

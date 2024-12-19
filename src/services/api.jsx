@@ -17,6 +17,7 @@ export const apiService = {
         });
 
         if (!response.ok) {
+            console.error(response.text());
             throw new Error(`API call failed: ${response.statusText}`);
         }
 

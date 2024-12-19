@@ -8,6 +8,7 @@ import Layout from './components/Layout';
 import LoginPage from './pages/LoginPage';
 import AddFeedPage from './pages/AddFeedPage';
 import AllFeedsPage from './pages/AllFeedsPage';
+import MyPostsPage from './pages/MyPostsPage';
 import MyFeedsPage from './pages/MyFeedsPage';
 
 ApiConfig.setBaseUrl('http://localhost:8080/v1/');
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/feeds" element={<AllFeedsPage />} />
           <Route path="/my-feeds" element={<MyFeedsPage />} />
+          <Route path="/my-posts" element={<MyPostsPage />} />
           <Route path="/add-feed" element={<AddFeedPage />} />
           <Route path="/" element={<Navigate to="/login" replace />} />
         </Routes>

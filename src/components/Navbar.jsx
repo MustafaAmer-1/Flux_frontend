@@ -35,12 +35,21 @@ const Navbar = () => {
                                     <span>Browse Feeds</span>
                                 </button>
                                 <button
-                                    onClick={() => navigate('/my-feeds')}
+                                    onClick={() => navigate('/my-posts')}
                                     className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-100"
                                 >
                                     <BookMarked className="h-4 w-4" />
                                     <span>My Posts</span>
                                 </button>
+
+                                <button
+                                    onClick={() => navigate('/my-feeds')}
+                                    className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-100"
+                                >
+                                    <BookMarked className="h-4 w-4" />
+                                    <span>My Feeds</span>
+                                </button>
+
                                 <button
                                     onClick={() => navigate('/add-feed')}
                                     className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-100"
