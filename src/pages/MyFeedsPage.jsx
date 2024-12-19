@@ -8,7 +8,6 @@ import { apiService } from '../services/api';
 const fetchFeeds = async () => {
     try {
         const feeds = await apiService.fetch("/feed_follow", { method: 'GET' })
-        console.log(feeds);
         return feeds
     } catch (error) {
         console.error(error);

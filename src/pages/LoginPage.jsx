@@ -28,7 +28,7 @@ const LoginPage = () => {
             const success = await authService.login(formData);
 
             if (success) {
-                navigate('/my-feeds');
+                navigate('/my-posts');
                 navigate(0)
             } else {
                 setError('Login failed. Please check your credentials.');
