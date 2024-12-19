@@ -63,6 +63,13 @@ const Navbar = () => {
                         ) : (
                             <>
                                 <button
+                                    onClick={() => navigate('/feeds')}
+                                    className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-100"
+                                >
+                                    <Globe className="h-4 w-4" />
+                                    <span>Browse Feeds</span>
+                                </button>
+                                <button
                                     onClick={() => navigate('/login')}
                                     className="flex items-center space-x-2 px-4 py-2 rounded-md hover:bg-gray-100"
                                 >

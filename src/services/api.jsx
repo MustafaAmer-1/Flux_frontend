@@ -1,3 +1,6 @@
+import { ApiConfig } from "../config/api";
+import { authService } from "./auth";
+
 export const apiService = {
     async fetch(endpoint, options = {}) {
         const apiKey = authService.getApiKey();

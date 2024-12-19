@@ -1,17 +1,29 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import FeedCard from "../components/FeedCard";
+import { authService } from '../services/auth';
+import { apiService } from '../services/api';
+
+const fetchFeeds = async (isAuthenticated) => {
+    try {
+        const feeds = await apiService.fetch(isAuthenticated ? "/feed_not_follow" : "/feeds", { method: 'GET' })
+        return feeds
+    } catch (error) {
+        console.error(error);
+    }
+    return null
+}
 
 const AllFeedsPage = () => {
-    const [feeds, setFeeds] = useState([
-        // Sample data
-        {
-            id: 1,
-            title: 'Tech News Blog',
-            description: 'Latest updates in technology',
-            postCount: 150
-        }
-    ]);
+    const isAuthenticated = authService.isAuthenticated()
+
+    const [feeds, setFeeds] = useState([]);
+
+    useEffect(() => {
+        fetchFeeds(isAuthenticated).then((feeds) => {
+            setFeeds(feeds)
+        })
+    }, [])
 
     const handleToggleFollow = (feedId) => {
         // Handle follow/unfollow logic here
@@ -25,7 +37,6 @@ const AllFeedsPage = () => {
                     <FeedCard
                         key={feed.id}
                         feed={feed}
-                        isFollowing={false}
                         onToggleFollow={handleToggleFollow}
                     />
                 ))}
