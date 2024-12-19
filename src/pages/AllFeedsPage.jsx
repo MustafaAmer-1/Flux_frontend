@@ -14,16 +14,6 @@ const fetchFeeds = async (isAuthenticated) => {
     return null
 }
 
-const unFollowFeed = async (feedId) => {
-    try {
-        await apiService.fetch(`/feed_follow/${feedId}`, { method: 'DELETE' })
-        return true
-    } catch (error) {
-        console.error(error);
-    }
-    return false
-}
-
 const followFeed = async (feedId) => {
     try {
         const jsonPayload = {
@@ -39,8 +29,6 @@ const followFeed = async (feedId) => {
     }
     return null
 }
-
-
 
 const AllFeedsPage = () => {
     const isAuthenticated = authService.isAuthenticated()

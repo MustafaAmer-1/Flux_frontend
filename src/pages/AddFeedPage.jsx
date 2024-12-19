@@ -2,14 +2,40 @@ import React, { useState } from 'react';
 import {
     AlertCircle
 } from 'lucide-react';
+import { apiService } from '../services/api';
+import { useNavigate } from 'react-router-dom';
+
+const createFeed = async (feedName, feedUrl) => {
+    try {
+        const feed = await apiService.fetch("/feeds", {
+            method: 'PUT',
+            body: JSON.stringify({
+                name: feedName,
+                url: feedUrl
+            })
+        })
+        return feed
+    } catch (error) {
+        console.error(error);
+    }
+    return null
+}
 
 const AddFeedPage = () => {
+    const [feedName, setFeedName] = useState('');
     const [feedUrl, setFeedUrl] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle feed addition logic here
+        const feed = await createFeed(feedName, feedUrl)
+        if (feed) {
+            navigate("/my-posts")
+        } else {
+            setError("Error Creating Feed! Please try again!")
+
+        }
     };
 
     return (
@@ -22,6 +48,16 @@ const AddFeedPage = () => {
                 </div>
             )}
             <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                    <label className="block text-sm font-medium mb-1">Feed Name</label>
+                    <input
+                        type="text"
+                        className="w-full px-3 py-2 border rounded-md"
+                        value={feedName}
+                        onChange={(e) => setFeedName(e.target.value)}
+                        placeholder="Example's Blog"
+                    />
+                </div>
                 <div>
                     <label className="block text-sm font-medium mb-1">Feed URL</label>
                     <input
