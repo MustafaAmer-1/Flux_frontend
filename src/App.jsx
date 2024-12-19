@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { ApiConfig } from './config/api';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 // Components
@@ -9,6 +9,8 @@ import LoginPage from './pages/LoginPage';
 import AddFeedPage from './pages/AddFeedPage';
 import AllFeedsPage from './pages/AllFeedsPage';
 import MyFeedsPage from './pages/MyFeedsPage';
+
+ApiConfig.setBaseUrl('http://localhost:8080/v1/');
 
 const App = () => {
   return (
