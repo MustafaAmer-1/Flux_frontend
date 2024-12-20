@@ -15,7 +15,7 @@ const LoginPage = () => {
     const isAuthenticated = authService.isAuthenticated()
     useEffect(() => {
         if (isAuthenticated) {
-            navigate('/my-feeds');
+            navigate('/my-posts');
         }
     }, [isAuthenticated, navigate]);
 
