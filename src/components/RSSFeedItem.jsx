@@ -1,5 +1,6 @@
 
 import { Calendar, Globe } from 'lucide-react';
+import ReactHtmlParser from 'react-html-parser'
 
 const RSSFeedItem = ({ item }) => {
     return (
@@ -9,7 +10,11 @@ const RSSFeedItem = ({ item }) => {
                     <h5 className="text-lg font-semibold">{item.title}</h5>
                 </div>
                 <div className="p-4">
-                    <p className="text-gray-700">{item.description}</p>
+                    <p className="text-gray-700">
+                        <div>
+                            {ReactHtmlParser(item.description)}
+                        </div>
+                    </p>
                     <div className="flex justify-end mt-4">
                         <a
                             href={item.link}
