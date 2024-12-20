@@ -12,7 +12,7 @@ import MyPostsPage from './pages/MyPostsPage';
 import MyFeedsPage from './pages/MyFeedsPage';
 import RegisterPage from './pages/RegisterPage';
 
-ApiConfig.setBaseUrl(process.env.REACT_APP_BACKEND_URL || 'http://localhost:8080/v1/');
+ApiConfig.setBaseUrl('https://urban-stacey-platground-475ec501.koyeb.app/v1');
 
 const App = () => {
   return (
