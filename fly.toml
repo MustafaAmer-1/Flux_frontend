@@ -1,0 +1,26 @@
+# fly.toml app configuration file generated for flux-rss on 2024-12-20T07:54:55+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'flux-rss'
+primary_region = 'cdg'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[env]
+  REACT_APP_BACKEND_URL = 'https://localhost:8080/v1/'
+
+[http_service]
+  internal_port = 5173
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
