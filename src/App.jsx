@@ -10,6 +10,7 @@ import AddFeedPage from './pages/AddFeedPage';
 import AllFeedsPage from './pages/AllFeedsPage';
 import MyPostsPage from './pages/MyPostsPage';
 import MyFeedsPage from './pages/MyFeedsPage';
+import RegisterPage from './pages/RegisterPage';
 
 ApiConfig.setBaseUrl('http://localhost:8080/v1/');
 
@@ -19,6 +20,7 @@ const App = () => {
       <Layout>
         <Routes>
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
           <Route path="/feeds" element={<AllFeedsPage />} />
           <Route path="/my-feeds" element={<MyFeedsPage />} />
           <Route path="/my-posts" element={<MyPostsPage />} />
